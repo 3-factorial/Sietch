@@ -1,3 +1,6 @@
+#exlude
+db.sqlite3
+__pycache__
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
