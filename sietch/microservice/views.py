@@ -1,10 +1,12 @@
 from django.http import HttpResponse
-from django.utils import timezone
-
+from datetime import datetime
 from .models import Flux
+from django.shortcuts import render
+
 
 def index(request):
-	now = timezone.now()
-	flux = Flux(date_time=now, flux=1.0)
+	data = Flux.objects.values()
+	now = datetime.now()
+	flux = Flux(now,1.0,"hello")
 	flux.save()
-	return HttpResponse("Este mi microservicio")
+	return HttpResponse(data,content_type="application/json")
