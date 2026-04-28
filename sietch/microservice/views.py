@@ -1,11 +1,10 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.utils import timezone
+
 from .models import Flux
-# Create your views here.
-from django.http import HttpResponse
 
 def index(request):
-	now = datetime.now
-	flux = Flux(now, 1.0)
+	now = timezone.now()
+	flux = Flux(date_time=now, flux=1.0)
 	flux.save()
 	return HttpResponse("Este mi microservicio")
