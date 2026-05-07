@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{% block meta_description %}Mi aplicación Django{% endblock %}" />
+  <title>{% block title %}Mi Proyecto{% endblock %} | {{ site_name|default:"Django App" }}</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Django Static Files -->
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+
+  <!-- CSS Variables & Estilos Base -->
+  <style>
+    :root {
+      --color-primary:     #0a0a0a;
+      --color-accent:      #e8ff47;
+      --color-accent-dark: #c8df20;
+      --color-surface:     #141414;
+      --color-border:      #2a2a2a;
+      --color-muted:       #6b6b6b;
+      --color-text:        #f0f0f0;
+      --color-text-soft:   #b0b0b0;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --radius-sm: 4px;
+      --radius-md: 10px;
+      --radius-lg: 20px;
+
+      --transition: 0.2s ease;
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-primary);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-size: 1rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main { flex: 1; }
+
+    /* ── Tipografía ── */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+    a:hover { opacity: 0.8; color: var(--color-accent); }
+
+    /* ── Navbar ── */
+    .navbar {
+      background-color: var(--color-surface) !important;
+      border-bottom: 1px solid var(--color-border);
+      padding-top: 0.9rem;
+      padding-bottom: 0.9rem;
+    }
+
+    .navbar-brand {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--color-text) !important;
+      letter-spacing: -0.03em;
+    }
+
+    .navbar-brand span {
+      color: var(--color-accent);
+    }
+
+    .nav-link {
+      color: var(--color-text-soft) !important;
+      font-weight: 400;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.85rem !important;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-text) !important;
+      background: rgba(232, 255, 71, 0.08);
+    }
+
+    .navbar-toggler {
+      border-color: var(--color-border);
+    }
+    .navbar-toggler-icon {
+      filter: invert(1);
+    }
+
+    /* ── Botones ── */
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: var(--color-primary);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 1.2rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-accent:hover {
+      background-color: var(--color-accent-dark);
+      color: var(--color-primary);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-accent {
+      border: 1.5px solid var(--color-accent);
+      color: var(--color-accent);
+      background: transparent;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 1.2rem;
+      transition: all var(--transition);
+    }
+    .btn-outline-accent:hover {
+      background: var(--color-accent);
+      color: var(--color-primary);
+    }
+
+    /* ── Alertas / Mensajes Django ── */
+    .messages-container { margin-top: 1rem; }
+
+    .alert {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      font-size: 0.9rem;
+    }
+    .alert-success { background: #0f2a14; border-color: #2a6b35; color: #6fcf97; }
+    .alert-warning { background: #2a1e00; border-color: #6b4c00; color: #f2c94c; }
+    .alert-danger  { background: #2a0a0a; border-color: #6b1a1a; color: #eb5757; }
+    .alert-info    { background: #0a1a2a; border-color: #1a4a6b; color: #56ccf2; }
+
+    /* ── Cards ── */
+    .card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      color: var(--color-text);
+    }
+    .card-header {
+      background-color: rgba(255,255,255,0.03);
+      border-bottom: 1px solid var(--color-border);
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    /* ── Formularios ── */
+    .form-control, .form-select {
+      background-color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      border-radius: var(--radius-sm);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-control:focus, .form-select:focus {
+      background-color: var(--color-primary);
+      color: var(--color-text);
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(232, 255, 71, 0.12);
+    }
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-soft);
+      margin-bottom: 0.35rem;
+    }
+    ::placeholder { color: var(--color-muted); }
+
+    /* ── Tablas ── */
+    .table {
+      color: var(--color-text);
+      --bs-table-bg: var(--color-surface);
+      --bs-table-border-color: var(--color-border);
+    }
+    .table > thead {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+    .table-hover > tbody > tr:hover {
+      background-color: rgba(232, 255, 71, 0.04);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background-color: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 2rem 0;
+      font-size: 0.85rem;
+      color: var(--color-muted);
+    }
+    footer a { color: var(--color-muted); }
+    footer a:hover { color: var(--color-accent); opacity: 1; }
+
+    /* ── Utilidades ── */
+    .text-accent  { color: var(--color-accent) !important; }
+    .text-muted   { color: var(--color-muted) !important; }
+    .bg-surface   { background-color: var(--color-surface) !important; }
+    .border-subtle{ border-color: var(--color-border) !important; }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--color-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+  </style>
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+  <!-- ─────────────────────────────────────────
+       NAVBAR
+  ───────────────────────────────────────── -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+      <a class="navbar-brand" href="{% url 'home' %}">
+        {% block brand %}Mi<span>App</span>{% endblock %}
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+        aria-controls="mainNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+
+        <!-- Links principales -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% block nav_links %}
+          <li class="nav-item">
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+               href="{% url 'home' %}">
+              <i class="bi bi-house me-1"></i>Inicio
+            </a>
+          </li>
+          {% endblock %}
+        </ul>
+
+        <!-- Auth / Acciones -->
+        <div class="d-flex align-items-center gap-2">
+          {% if user.is_authenticated %}
+            <span class="text-muted small me-1">
+              <i class="bi bi-person-circle me-1"></i>{{ user.get_short_name|default:user.username }}
+            </span>
+            <a href="{% url 'logout' %}" class="btn btn-outline-accent btn-sm">
+              <i class="bi bi-box-arrow-right me-1"></i>Salir
+            </a>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-outline-accent btn-sm">
+              <i class="bi bi-box-arrow-in-right me-1"></i>Ingresar
+            </a>
+            <a href="{% url 'register' %}" class="btn btn-accent btn-sm">
+              Registrarse
+            </a>
+          {% endif %}
+
+          {% block nav_extra_actions %}{% endblock %}
+        </div>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─────────────────────────────────────────
+       MENSAJES DJANGO
+  ───────────────────────────────────────── -->
+  {% if messages %}
+  <div class="container messages-container">
+    {% for message in messages %}
+    <div
+      class="alert alert-{{ message.tags }} alert-dismissible fade show d-flex align-items-center gap-2"
+      role="alert"
+    >
+      {% if message.tags == 'success' %}<i class="bi bi-check-circle-fill"></i>
+      {% elif message.tags == 'warning' %}<i class="bi bi-exclamation-triangle-fill"></i>
+      {% elif message.tags == 'error' or message.tags == 'danger' %}<i class="bi bi-x-circle-fill"></i>
+      {% else %}<i class="bi bi-info-circle-fill"></i>{% endif %}
+      <span>{{ message }}</span>
+      <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ─────────────────────────────────────────
+       CONTENIDO PRINCIPAL
+  ───────────────────────────────────────── -->
+  <main>
+    {% block content %}
+    <!-- El contenido de cada vista va aquí -->
+    {% endblock %}
+  </main>
+
+  <!-- ─────────────────────────────────────────
+       FOOTER
+  ───────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center gy-2">
+        <div class="col-md-6">
+          <span class="fw-semibold" style="font-family: var(--font-display); color: var(--color-text);">
+            {% block footer_brand %}Mi<span style="color:var(--color-accent)">App</span>{% endblock %}
+          </span>
+          <span class="ms-2">— {% block footer_tagline %}Tu proyecto Django{% endblock %}</span>
+        </div>
+        <div class="col-md-6 text-md-end">
+          &copy; {% now "Y" %} {% block footer_copy %}Mi Proyecto. Todos los derechos reservados.{% endblock %}
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─────────────────────────────────────────
+       BOOTSTRAP JS
+  ───────────────────────────────────────── -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc4s9bIOgUxi8T/jzmk9PbxNpU3K1v9JFxRE8tObvI7"
+    crossorigin="anonymous"
+  ></script>
+
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>

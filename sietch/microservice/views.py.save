@@ -1,11 +1,11 @@
 from django.http import HttpResponse
 from datetime import datetime
-from .models import Flux,MyUser
+from .models import Flux
 from django.shortcuts import render
 from django.views.generic import View
-from .forms import MyUserForm
+from .forms import MyuserForm
 from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.utils.decorators import method_decorathor
 #chanse me equivoque
 
 
@@ -20,22 +20,14 @@ def index(request):
 class MyUserView(View):
 	form_class = MyUserForm
 	template_name = 'microservice/info.html'
-	initial = {"key":"value"}
-	
 
+	#http
 	def get(self,request,*args,**kwargs):
-		id_key = self.kwargs["id_key"]
-		
-		try:
-			data  = MyUser.objects.get(id=id_key)
-			form = self.form_class(instance=data)
-		except MyUser.DoesNotExist:
-			form = self.form_class(initial=self.initial)
-			id_key=0
-
-		return render(request,self.template_name,{'form':form,'id_key':id_key})
-			
-
+		year = self.kwargs["year"]
+	
+	
+	try:
+		data = .objects.get()
 	#@method_decorator(login_required)
 	def dispatch(self,*args,**kwargs):
 		return super(MyUserView,self).dispatch(*args,**kwargs)
