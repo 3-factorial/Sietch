@@ -12,8 +12,11 @@ from django.utils.decorators import method_decorator
 def index(request):
 	data = Flux.objects.values()
 	now = datetime.now()
-	flux = Flux(now,1.0,"hello")
+	flux = Flux(date_time = now,flux = 1.0,name = "hello")
 	flux.save()
+	data = list(Flux.objects.values())
+	import json
+	data = json.dumps(data, default = str)
 	return HttpResponse(data,content_type="application/json")
 
 
@@ -31,29 +34,27 @@ class MyUserView(View):
 			form = self.form_class(instance=data)
 		except MyUser.DoesNotExist:
 			form = self.form_class(initial=self.initial)
-			id_key=0
-
+			id_key = 0
 		return render(request,self.template_name,{'form':form,'id_key':id_key})
 
 	def post(self, request, *args, **kwargs):
-		if 'cancel_page_button' in request.POST:
-			return HttpResponseRedirect('/cancelar')
 		id_key = self.kwargs['id_key']
 
-		if 'save_page_button' in request.POST:
-			try:
-				instance = MyUser.objects.get(id=id_key)
-				form = self.form_class(request.POST or None, instance = instance)
+		try:
+			instance = MyUser.objects.get(id=id_key)
+			form = self.form_class(request.POST, instance = instance)
 
-			except Patient.DoesNotExist:
-				#form = self.form_class(instance = pacient)
-				form = self.form_class(request.POST)
+		except MyUser.DoesNotExist:
+			form = self.form_class(request.POST)
 
-			if form.is_valid():
-				myuser = form.save()
-				return render(request, 'plugin/saved.html', {'myuser': myuser})
-		return HttpResponseRedirect('/')
-
+		if form.is_valid():
+			myuser = form.save(commit = False)
+			if not myuser.id:
+				myuser.id = id_key
+			myuser.save()	
+			return HttpResponse(f"Usuario {myuser.name} guardado con éxito con ID {id_key}")
+				
+		return render(request, self.template_name, {'form': form, 'id_key': id_key})
 
 
 	#@method_decorator(login_required)
