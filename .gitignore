@@ -1,4 +1,6 @@
 #exlude
+sietch/sietch/settings.py
+dev/
 db.sqlite3
 __pycache__
 # Byte-compiled / optimized / DLL files

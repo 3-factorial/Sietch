@@ -1,4 +1,4 @@
-#!/home/alumnos/Downloads/Sietch/dev/bin/python3
+#!/home/ubuntu/Sietch/dev/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
