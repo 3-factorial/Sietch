@@ -1,0 +1,35 @@
+from django.http import HttpResponse
+from datetime import datetime
+from .models import Flux
+from django.shortcuts import render
+from django.views.generic import View
+from .forms import MyuserForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorathor
+#chanse me equivoque
+
+
+def index(request):
+	data = Flux.objects.values()
+	now = datetime.now()
+	flux = Flux(now,1.0,"hello")
+	flux.save()
+	return HttpResponse(data,content_type="application/json")
+
+
+class MyUserView(View):
+	form_class = MyUserForm
+	template_name = 'microservice/info.html'
+
+	#http
+	def get(self,request,*args,**kwargs):
+		year = self.kwargs["year"]
+	
+	
+	try:
+		data = .objects.get()
+	#@method_decorator(login_required)
+	def dispatch(self,*args,**kwargs):
+		return super(MyUserView,self).dispatch(*args,**kwargs)
+	#return HttpResponse(data,content_type="application/json")
+
