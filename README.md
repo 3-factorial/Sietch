@@ -5,6 +5,7 @@ Nosotros somos 3-factorial, un equipo de estudiantes de la carrera de Tecnologí
 3-factorial está conformado por:
 
 Emmanuel Gutiérrez Cruz: Líder de proyecto y encargado de testing.
+
 Francisco Santana González: Líder de tecnología.
 
 Este es nuestro microservicio llamado **Sietch**.
