@@ -27,7 +27,7 @@ DEBUG = True
 
 
 #ip publica
-ALLOWED_HOSTS = ['98.84.186.89']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles","microservice"
+    "django.contrib.staticfiles",
+    "microservice",
+    "core",
 ]
 
 MIDDLEWARE = [

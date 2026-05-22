@@ -42,3 +42,4 @@ for i, noticia in enumerate(noticias, 1):
         
         print(f"Resumen: {texto_limpio[:200]}...") 
     print("-" * 30)
+

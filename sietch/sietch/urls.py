@@ -20,6 +20,7 @@ from django.urls import path,include
 
 urlpatterns = [
 	path("sietch/",include("microservice.urls")),
-	path('accounts/', include('django.contrib.auth.urls')),
+	path('accounts/', include('django.contrib.auth.urls')),#pueda que no se use
 	path("admin/", admin.site.urls),
+    path("", include("core.urls")),
 ]
