@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias</title>
+    <link rel="stylesheet" href="{% static 'css/estilos_hnews.css' %}">
+</head>
+<body>
+    <main>
+
+    <nav>
+        <a href="/hnews/?filtro=front_page" 
+           class="{% if filtro_actual == 'front_page' %}activo{% endif %}">
+           Lo más relevante
+        </a>
+        <a href="/hnews/?filtro=show_hn" 
+           class="{% if filtro_actual == 'show_hn' %}activo{% endif %}">
+           Proyectos y herramientas
+        </a>
+        <a href="/hnews/?filtro=ask_hn" 
+           class="{% if filtro_actual == 'ask_hn' %}activo{% endif %}">
+           Preguntas y debates
+        </a>
+    </nav>
+
+    <h1>
+        {% if filtro_actual == 'ask_hn' %}Preguntas y debates
+        {% elif filtro_actual == 'front_page' %}Lo más relevante
+        {% elif filtro_actual == 'show_hn' %}Proyectos y herramientas
+        {% endif %}
+    </h1>
+
+    <div class="grid">
+        {% for noticia in noticias %}
+        <div class="card">
+            <div class="card_info">
+                <h2>{{ noticia.title }}</h2>
+            <p class="autor">Autor: <span>{{ noticia.author }}</span></p>
+            </div>
+
+            {% if noticia.texto_limpio %}
+                <p class="resumen">{{ noticia.texto_limpio }}...</p>
+            {% endif %}
+
+            <div class="links">
+                {% if noticia.url_externa %}
+                    <a href="{{ noticia.url_externa }}" target="_blank">Ver noticia</a>
+                {% endif %}
+                <a href="{{ noticia.url_debate }}" target="_blank">Ver debate</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </main>
+
+    <a href="/hnews/" class="btn_home">⌂</a>
+</body>
+</html>

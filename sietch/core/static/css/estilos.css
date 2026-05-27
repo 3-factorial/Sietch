@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:ital,wght@0,100..900;1,100..900&family=Red+Hat+Mono:ital,wght@0,300..700;1,300..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Red Hat Mono', monospace;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    overflow: hidden;
+    background-image: url('../img/wall_home.png');
+    animation: moverFondo 30s linear infinite alternate;
+}
+
+@keyframes moverFondo {
+    0%{
+        background-position: 0 0;
+    }
+    100%{
+        background-position: 1000px 1000px;
+    }
+}
+
+main{
+    width: 100%;
+    height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    background-image: 
+    radial-gradient(circle at top left, #092292dc 0%,transparent 50%),
+    radial-gradient(circle at bottom right, #11cfd686 0%,transparent 50%),
+    radial-gradient(circle at top right, #e00a636e 0%,transparent 50%),
+    radial-gradient(circle at bottom left, #7015e780 0%,transparent 50%);
+
+    z-index: 100;
+}
+
+h1{
+    font-family: 'Geist Mono', monospace;
+    font-size: clamp(2rem, 5vw, 4rem);
+    text-shadow: 5px 5px 10px #ff008c5b, -5px -5px 10px #00ffff6e;
+}
+p{
+    font-size: clamp(1rem, 2.5vw, 1.8rem);
+    padding: 0px 20px;
+    text-shadow: 2px 2px 5px #ff00ff5b, -2px -2px 5px #00ffff6e;
+    text-shadow: 2px 2px 5px #ff00ff5b, -2px -2px 5px #00ffff6e;
+}
+
+.cta{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #131214;
+    color: white;
+    text-decoration: none;
+    font-size: clamp(1rem, 2vw, 1.5rem); 
+    transition: all 0.3s ease;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    margin-top: 20px;
+}
+
+.cta:hover{
+    
+    scale: 1.1;
+    background-color: black;
+    box-shadow: 5px 5px 0px #bebebe, -5px -5px 0px rgb(255, 255, 255);
+    text-shadow: 2px 2px 5px #ffffff, -2px -2px 5px #ffffff8e;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    color: white;
+}
+
+img{
+    width: 35px;
+    height: 35px;
+}
+
+img:hover{
+    scale: 1.2;
+    transition: all 0.3s ease;
+}

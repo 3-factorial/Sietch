@@ -23,4 +23,5 @@ urlpatterns = [
 	path('accounts/', include('django.contrib.auth.urls')),#pueda que no se use
 	path("admin/", admin.site.urls),
     path("", include("core.urls")),
+    path('hnews/', include('hnews.urls')),
 ]
