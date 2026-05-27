@@ -35,5 +35,4 @@ def noticias(request):
     return render(request, 'hnews.html', {
         'noticias': lista_noticias,
         'filtro_actual': filtro,
-        'n_news': n_news,
     })
