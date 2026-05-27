@@ -1,14 +1,28 @@
+  {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    <title>Sietch</title>
 </head>
+
 <body>
-    <h1>{{ titulo }}</h1>
-    <p>Esta es mi página de inicio.</p>
-    <h2>Microservicio</h2>
-    <a href="/sietch/">Ir al microservicio</a>
+    <main>
+        <h1>Bienvenido a Sietch</h1>
+        <p>Código, ideas y debates. Directo desde la comunidad</p>
+        <a href="/hnews/" class="cta">Ver novedades</a>
+    </main>
+    <footer>
+        <p>&copy; 2026 Sietch. Todos los derechos reservados.</p>
+        <a href="https://github.com/3-factorial/Sietch" class="git">
+            <img src="{% static 'img/github.svg' %}" alt="Logo de GitHub">
+        </a>
+        
+    </footer>
 </body>
+
 </html>
