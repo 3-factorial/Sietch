@@ -27,7 +27,7 @@ DEBUG = True
 
 
 #ip publica
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['100.27.149.64', 'localhost']
 
 
 # Application definition
