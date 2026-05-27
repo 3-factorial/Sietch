@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "microservice",
     "core",
+    "hnews",
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,7 @@ WSGI_APPLICATION = "sietch.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME":  "testing2026",
+        "NAME":  "hnews",
         'USER': 'mane',
         'PASSWORD': '2401',
         'HOST': 'localhost',
