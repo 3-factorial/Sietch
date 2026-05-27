@@ -6,17 +6,18 @@ Nosotros somos 3-factorial, un equipo de estudiantes de la carrera de Tecnologí
 
 Emmanuel Gutiérrez Cruz: Líder de proyecto y encargado de testing.
 
-Francisco Santana González: Líder de tecnología.
+Francisco Santana González: Líder de tecnologías.
 
 Este es nuestro microservicio llamado **Sietch**.
 
-Sietch está diseñado para filtrar y organizar noticias de **Hacker News**, un portal especializado en lo último en tecnología. El sistema extrae los datos desde la API de **Algolia**, los limpia y los entrega en un formato optimizado y amigable, ideal para ser visualizado en una interfaz tipo **Bento Grid** dentro de un sitio web.
+Sietch está diseñado para filtrar y organizar noticias de **Hacker News**, un portal especializado en lo último en tecnología. El sistema extrae los datos desde la API de **Algolia**, los limpia y los entrega en un formato optimizado y amigable, ideal para ser visualizado en una interfaz de cajas dentro de un sitio web.
 
-Un Bento Grid es un diseño visual que organiza la información en cajas de distintos tamaños, donde la caja más grande resalta el contenido más importante.
-Para personalizar la visualización, el usuario tendrá tres opciones:
+La interfaz cuenta con 3 filtros: 
 
-1.- Por intereses: Seleccionar los temas de su interés. Sietch mostrará en la caja más grande la noticia del día con mayor relevancia para el usuario.
+1.- Lo más relevante: Esta sección muestra las noticias mas recientes o con nuevas interacciones
 
-2.- Por tendencias: Seleccionar los temas en tendencia. Sietch destacará la noticia más viral o con mayor número de interacciones.
+2.- Proyectos y Herramientas: Aquí se muestran los proyectos que otros usuarios comparten con la comunidad
 
-3.- ...
+3.- Preguntas y Debates: Aquí se muestran las publicaciones sobre peguntas que realizan otros usuarios o debates enfocados en tecnología
+
+
