@@ -31,7 +31,18 @@
         {% elif filtro_actual == 'show_hn' %}Proyectos y herramientas
         {% endif %}
     </h1>
+        <div class="cantidad">
+            <p>Número de respuestas: </p>
 
+            <div class="cantidad_btn">
+                <input type="number" id="cantidad" value="{{ n_news }} " min="1" max="500">
+                <button onclick="
+                var n = document.getElementById('cantidad').value;
+                if(n) window.location.href='/hnews/?filtro={{ filtro_actual }}&n=' + n;">
+                    Aplicar
+                </button>
+            </div>
+        </div>
     <div class="grid">
         {% for noticia in noticias %}
         <div class="card">

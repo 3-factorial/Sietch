@@ -8,7 +8,7 @@ import html
 
 def noticias(request):
     filtro = request.GET.get('filtro', 'ask_hn')
-    n_news = int(request.GET.get('n', 30))
+    n_news = int(request.GET.get('n', 16))
     
     URL = f"https://hn.algolia.com/api/v1/search?tags={filtro}&hitsPerPage={n_news}"
     response = requests.get(URL)

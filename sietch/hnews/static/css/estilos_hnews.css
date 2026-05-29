@@ -160,3 +160,39 @@ p span{
     color: black;
     transition: 0.3s;
 }
+
+.cantidad{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cantidad p{
+    font-size: 20px;
+}
+
+.cantidad_btn input{
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+}
+
+.cantidad_btn button{
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0e0ba7c7;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cantidad_btn button:hover{
+    background-color: #7976f8;
+    transition: 0.3s;
+}
+
