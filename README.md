@@ -1,7 +1,7 @@
 # Sietch
 We are **3-factorial**, a team of students pursuing a degree in Information Technologies for Sciences (TIC) at the Universidad Nacional Autónoma de México, Morelia campus.
 
-<img src="imagenes/unam.jpg" alt="UNAM Logo" width="100">
+<img src="imagenes/unam.jpg" alt="UNAM Logo" width="150">
 
 ## 3-factorial is composed of:
 * **Emmanuel Gutiérrez**: Project Leader and QA/Testing Engineer.
